@@ -1,0 +1,20 @@
+{
+  "contactos": [
+    {
+      "id": 1,
+      "nombre": "Laura García",
+      "email": "laura@example.com",
+      "asunto": "Información general",
+      "mensaje": "Quería conocer los horarios de atención.",
+      "aceptaPrivacidad": true
+    },
+    {
+      "id": 2,
+      "nombre": "Marcos López",
+      "email": "marcos@example.com",
+      "asunto": "Solicitud de ayuda",
+      "mensaje": "Tengo una consulta acerca de mi solicitud.",
+      "aceptaPrivacidad": true
+    }
+  ]
+}
