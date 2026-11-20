@@ -34,23 +34,23 @@ export default function ContactForm() {
         </div>
         <span className="panel-icon" aria-hidden="true">✉</span>
       </div>
-      <p className="panel-description">Completa los campos. La validación y el envío se implementarán por etapas.</p>
+      <p className="panel-description">Completa los campos para registrar un nuevo contacto.</p>
 
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <div className="field-row">
           <div className="field">
             <label htmlFor="nombre">Nombre</label>
-            <input id="nombre" type="text" placeholder="Tu nombre" {...register('nombre')} />
+            <input id="nombre" type="text" aria-invalid={!!errors.nombre} aria-describedby={errors.nombre ? "error-nombre" : undefined} placeholder="Tu nombre" {...register('nombre')} />
             {errors.nombre && (
-                    <p>{errors.nombre.message}</p>
+                    <p id="error-nombre">{errors.nombre.message}</p>
                 )}
             {/* TODO (etapa 3): muestra aquí errors.nombre y mejora su accesibilidad. */}
           </div>
           <div className="field">
             <label htmlFor="email">Correo electrónico</label>
-            <input id="email" type="email" placeholder="correo@ejemplo.com" {...register('email')} />
+            <input id="email" type="email" aria-invalid={!!errors.email} aria-describedby={errors.email ? "error-email" : undefined} placeholder="correo@ejemplo.com" {...register('email')} />
             {errors.email && (
-                    <p>{errors.email.message}</p>
+                    <p id="error-email">{errors.email.message}</p>
                 )}
             {/* TODO (etapa 3): muestra aquí errors.email y mejora su accesibilidad. */}
           </div>
@@ -58,29 +58,29 @@ export default function ContactForm() {
 
         <div className="field">
           <label htmlFor="asunto">Asunto</label>
-          <input id="asunto" type="text" placeholder="¿En qué podemos ayudarte?" {...register('asunto')} />
+          <input id="asunto" type="text" aria-invalid={!!errors.asunto} aria-describedby={errors.asunto ? "error-asunto" : undefined} placeholder="¿En qué podemos ayudarte?" {...register('asunto')} />
           
           {errors.asunto && (
-                    <p>{errors.asunto.message}</p>
+                    <p id="error-asunto">{errors.asunto.message}</p>
                 )}
           {/* TODO: errors.asunto */}
         </div>
 
         <div className="field">
           <label htmlFor="mensaje">Mensaje</label>
-          <textarea id="mensaje" rows="5" placeholder="Cuéntanos un poco más..." {...register('mensaje')} />
+          <textarea id="mensaje" rows="5" aria-invalid={!!errors.mensaje} aria-describedby={errors.mensaje ? "error-mensaje" : undefined} placeholder="Cuéntanos un poco más..." {...register('mensaje')} />
           {errors.mensaje && (
-                    <p>{errors.mensaje.message}</p>
+                    <p id="error-mensaje">{errors.mensaje.message}</p>
                 )}
           {/* TODO: errors.mensaje */}
         </div>
 
         <label className="check-field" htmlFor="privacidad">
-          <input id="privacidad" type="checkbox" {...register('aceptaPrivacidad')} />
+          <input id="privacidad" type="checkbox" aria-invalid={!!errors.aceptaPrivacidad} aria-describedby={errors.aceptaPrivacidad ? "error-aceptaPrivacidad" : undefined} {...register('aceptaPrivacidad')} />
           <span>Confirmo que he leído la información de privacidad (simulada para esta práctica).</span>
         </label>
         {errors.aceptaPrivacidad && (
-                    <p>{errors.aceptaPrivacidad.message}</p>
+                    <p id="error-aceptaPrivacidad">{errors.aceptaPrivacidad.message}</p>
                 )}
 
         {/* TODO (etapa 5): mostrar envío en curso, error del servidor y éxito. */}

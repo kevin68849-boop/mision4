@@ -1,6 +1,9 @@
 // TODO (etapa 4): importar useQuery desde @tanstack/react-query.
 // TODO (etapa 4): importar obtenerContactos desde services/contactService.js.
 
+import { useQuery } from '@tanstack/react-query';
+import { obtenerContactos } from '../services/contactService';
+
 export default function ContactList() {
   // TODO: lanzar la consulta GET usando useQuery({ queryKey, queryFn }).
   // TODO: gestionar carga, error y datos recibidos.
