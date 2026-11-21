@@ -23,6 +23,14 @@
       "mensaje": "holaaaaaaa",
       "aceptaPrivacidad": true,
       "id": 3
+    },
+    {
+      "nombre": "pepito",
+      "email": "pepito@gmail.com",
+      "asunto": "soy pepito",
+      "mensaje": "hola, me llamo pepito",
+      "aceptaPrivacidad": true,
+      "id": 4
     }
   ]
 }
