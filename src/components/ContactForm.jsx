@@ -32,7 +32,7 @@ export default function ContactForm() {
     // TODO (etapa 4): sustituir por una mutación POST real.
     // IMPORTANTE: esto NO almacena datos. Solo muestra el objeto en la consola.
     mutation.mutate(datos);
-    console.log('Datos del formulario (aún no enviados):', datos);
+    console.log('Datos del formulario:', datos);
     
   }
 
@@ -94,11 +94,17 @@ export default function ContactForm() {
                     <p id="error-aceptaPrivacidad">{errors.aceptaPrivacidad.message}</p>
                 )}
 
-        {/* TODO (etapa 5): mostrar envío en curso, error del servidor y éxito. */}
-        <button className="submit-button" type="submit">
-          Enviar contacto <span aria-hidden="true">→</span>
+        {mutation.isError && (
+          <p className="error-message">Error al enviar el contacto: {mutation.error.message}</p>
+        )}
+        {mutation.isSuccess && (
+          <p className="success-message">Contacto enviado correctamente.</p>
+        )}
+        <button className="submit-button" type="submit" disabled={mutation.isPending}>
+          {mutation.isPending ? 'Enviando...' : 'Enviar contacto'}
+          <span aria-hidden="true">→</span>
         </button>
-        <p className="hint">Estado actual: botón de demostración. El POST todavía no existe.</p>
+        
       </form>
     </section>
   );
