@@ -3,6 +3,8 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { contactoSchema } from "../schemas/contactSchema";
 // TODO (etapa 4): importa useMutation y la función crearContacto.
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { crearContacto } from '../services/contactService';
 
 export default function ContactForm() {
   // Esto ya deja preparados los datos y register/handleSubmit de React Hook Form.
@@ -17,12 +19,21 @@ export default function ContactForm() {
     // TODO (etapa 2): conecta aquí el esquema de Zod mediante un resolver.
     resolver: zodResolver(contactoSchema),
   });
+  const queryClient = useQueryClient();
+  const mutation = useMutation({
+    mutationFn: crearContacto,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['contactos'] });
+      reset();
+    },
+  });
 
   function onSubmit(datos) {
     // TODO (etapa 4): sustituir por una mutación POST real.
     // IMPORTANTE: esto NO almacena datos. Solo muestra el objeto en la consola.
+    mutation.mutate(datos);
     console.log('Datos del formulario (aún no enviados):', datos);
-    alert("Formulario recibido correctamente");
+    
   }
 
   return (

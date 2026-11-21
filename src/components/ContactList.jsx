@@ -25,7 +25,7 @@ export default function ContactList() {
       <p className="panel-description">Aquí aparecerán los contactos devueltos por el servidor.</p>
       {isLoading && <p>Cargando contactos...</p>}
       {isError && <p>Error al obtener los contactos: {error.message}</p>}
-      {data && (
+      {!isLoading && !isError && data?.length > 0 && (
         <ul>
           {data.map((contacto) => (
             <li key={contacto.id}>
