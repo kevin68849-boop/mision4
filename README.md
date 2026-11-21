@@ -1,89 +1,68 @@
-# M4 · Full Contact Forms — base incompleta
+# Full Contact Forms
 
-Aplicación de aprendizaje con React, React Hook Form, Zod y TanStack Query v5.
+Misión M4 · Web Development I.
 
-> **Importante:** esta entrega es una **base incompleta**, no una práctica terminada.
-> Los envíos solo muestran datos en consola; la API todavía no se consulta desde React.
+Aplicación desarrollada con React y Vite que permite registrar contactos mediante un formulario validado con React Hook Form y Zod, y consultar los registros almacenados en una API local utilizando TanStack Query.
 
-## 1. Requisitos previos
+## Cómo probarlo
 
-- Node.js compatible con Vite (20.19+ o 22.12+).
-- npm.
+1. Clonar el repositorio:
+   `git clone https://github.com/kevin68849-boop/mision4.git`
 
-## 2. Arranque
+2. Acceder a la carpeta del proyecto:
+   `cd mision4`
 
-Desde la carpeta del proyecto:
+3. Instalar las dependencias:
+   `npm install`
 
-```bash
-npm install
-npm run dev
-```
+4. Iniciar la API local:
+   `npm run api`
 
-En **otra terminal**, ejecuta el servidor HTTP de pruebas:
+5. Abrir otra terminal e iniciar React:
+   `npm run dev`
 
-```bash
-npm run api
-```
+6. Abrir en el navegador la dirección indicada por Vite.
 
-La página usa la dirección que anuncie Vite (normalmente `http://localhost:5173`).
-La API usa `http://localhost:3001/contactos`. Puedes comprobarla en el navegador.
+Para probar la aplicación, rellenar los campos del formulario y pulsar «Enviar contacto». Si los datos son válidos, el contacto se registra y aparece automáticamente en el listado.
 
-## 3. Qué está hecho
+También se pueden comprobar las validaciones introduciendo datos incorrectos o dejando campos obligatorios vacíos.
 
-- [x] Estructura React + Vite.
-- [x] Instanciación de `QueryClient` y `QueryClientProvider`.
-- [x] Componentes separados para formulario y listado.
-- [x] Campos visibles con `register` y `handleSubmit` básicos.
-- [x] Servidor de datos de prueba con `json-server`.
-- [ ] Reglas reales de Zod y conexión con `zodResolver`.
-- [ ] Errores accesibles debajo de cada campo.
-- [ ] GET mediante `useQuery`.
-- [ ] POST mediante `useMutation`.
-- [ ] Invalidación de la consulta tras registrar un contacto.
-- [ ] Estados visibles de carga, error y éxito.
-- [ ] Validación opcional de respuesta remota con `safeParse`.
-- [ ] Pruebas de comportamiento y documentación final.
+## Uso de IA
 
-## 4. Etapas sugeridas
+Utilicé ChatGPT (OpenAI) como herramienta de apoyo durante el desarrollo de la práctica.
 
-1. Inspeccionar `src/App.jsx`, `src/main.jsx` y `src/components/ContactForm.jsx`.
-2. Construir las reglas de `src/schemas/contactSchema.js` y conectar `zodResolver`.
-3. Renderizar los mensajes de error y añadir `aria-invalid` y `aria-describedby`.
-4. Completar `src/services/contactService.js` con `fetch`, comprobación de `response.ok` y JSON.
-5. Completar `ContactList.jsx` con `useQuery` y `.map()`.
-6. Enviar los contactos con `useMutation` e invalidar la query correspondiente en `onSuccess`.
-7. Mostrar feedback y comprobar errores de API, cargas, resets y datos corruptos.
-8. Documentar pruebas, decisiones y uso de IA.
+La IA generó la estructura inicial del proyecto, una base incompleta de los componentes y los estilos CSS. Posteriormente, la utilicé para resolver dudas, comprender las librerías y revisar mis implementaciones.
 
-## 5. Rúbrica (según la imagen del enunciado)
+Ejemplos de prompts reales:
 
-| Criterio | Puntos |
-| --- | ---: |
-| React Hook Form y errores accesibles | 20 |
-| Validación Zod con refinamientos y mensajes propios | 15 |
-| TanStack Query v5: consultas, mutaciones e invalidación | 15 |
-| Feedback de carga / error / éxito | 10 |
-| Originalidad y dominio del formulario elegido | 10 |
-| README, IA, repositorio, commits, tecnología y estructura | 30 |
+- "Te voy a pasar una imagen con el contenido a hacer, me vas a generar una base incompleta, y poco a poco entre los 2 vamos rellenandolo con las cosas que pide el enunciado y los requisitos".
 
-**Bonus:** validar con `safeParse` la respuesta remota y demostrar que se detecta un dato corrupto.
+A partir de esa base, fui implementando las validaciones de Zod, los mensajes de error y atributos de accesibilidad, las funciones GET y POST con fetch y la integración con useQuery y useMutation.
 
-## 6. API elegida
+"Lo que pasa es que cuando meto las cosas dentro y no me deja enviar, no me manda un mensaje, ¿puedo meter un alert dentro de los campos de contactoSchema?"
 
-El enunciado no impone un servicio concreto. Para garantizar GET/POST persistentes durante el desarrollo usamos `json-server`, un servidor HTTP local. Los datos de prueba residen en `db.json`; **no** es un servicio desplegado en Internet. Si el profesor exige un servidor externo, esta elección deberá revisarse.
+Puse ese promp debido a unas dudas con mi codigo para resolverlo.
 
-## 7. Declaración de uso de IA (borrador que debes completar honestamente)
+La IA me proporcionó explicaciones, ejemplos y correcciones cuando cometía errores.
 
-Se ha usado asistencia de IA para generar una estructura inicial incompleta de React y CSS, además de un plan de tareas y el esqueleto de los componentes. Las reglas de validación, las peticiones HTTP, el tratamiento de estados y las decisiones finales se implementarán y revisarán durante el desarrollo, detallando qué se hizo manualmente y qué ayuda adicional se utilizó.
+Para verificar el funcionamiento, ejecuté la aplicación junto con la API local, comprobé los datos recibidos en la consola y realicé el registro de un contacto desde el formulario. Verifiqué que el contacto aparecía en el listado sin recargar manualmente la página.
 
-**Registro de decisiones y asistencia adicional:**
+Escribí y adapté manualmente la lógica principal de validación, las peticiones HTTP, la gestión de consultas y mutaciones y los mensajes de estado, utilizando las explicaciones de la IA como referencia.
 
-- Pendiente de completar con fecha, cambio realizado, motivo y si intervino IA.
+## Autopsia
 
-## 8. Comprobaciones antes de entregar
+1. **Utilizar una API local en lugar de depender de un servicio externo.**
 
-- `npm run build` sin errores.
-- Subir código fuente y README, pero no `node_modules` ni `dist`.
-- Commits progresivos y explicativos, no un único commit final.
-- Mostrar fallos de validación, fallo de API, éxito del registro e invalidación.
-- Probar el bonus con un registro remoto deliberadamente corrupto (y restaurar los datos).
+   Decidí trabajar con json-server para almacenar y recuperar los contactos durante el desarrollo.
+
+   Descarté utilizar directamente una API externa porque habría añadido dependencias y posibles problemas de configuración ajenos al objetivo de la práctica.
+
+   Esta decisión me permitió concentrarme en aprender las peticiones HTTP y comprobar los resultados de manera controlada.
+
+2. **Invalidar la consulta después de registrar un contacto en lugar de modificar manualmente el listado.**
+
+   Decidí utilizar invalidateQueries después de que useMutation completase correctamente el POST.
+
+   La alternativa era actualizar manualmente el array de contactos en el estado de React después de cada envío.
+
+   Descarté esa opción porque habría supuesto gestionar dos mecanismos diferentes para mantener los datos actualizados. Con la invalidación, TanStack Query vuelve a consultar los contactos y mantiene el listado sincronizado con el servidor.
